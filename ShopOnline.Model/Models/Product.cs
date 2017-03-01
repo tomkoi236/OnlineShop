@@ -10,37 +10,39 @@ namespace ShopOnline.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int ID { set; get; }
 
         [Required]
         [MaxLength(256)]
-        public string Name { get; set; }
+        public string Name { set; get; }
 
         [Required]
         [MaxLength(256)]
-        public string Alias { get; set; }
+        public string Alias { set; get; }
 
         [Required]
-        public int CatagoryID { get; set; }
+        public int CategoryID { set; get; }
 
         [MaxLength(256)]
-        public string Image { get; set; }
+        public string Image { set; get; }
 
-        public XElement MoreImage { get; set; }
-        public decimal Price { get; set; }
-        public decimal? PromotionPrice { get; set; }
-        public int? Warranty { get; set; }
+        [Column(TypeName = "xml")]
+        public string MoreImages { set; get; }
+
+        public decimal Price { set; get; }
+
+        public decimal? PromotionPrice { set; get; }
+        public int? Warranty { set; get; }
 
         [MaxLength(500)]
-        public string Descripton { get; set; }
+        public string Description { set; get; }
+        public string Content { set; get; }
 
-        public string Content { get; set; }
-
-        public bool? HomeFlat { get; set; }
-        public bool? HotFlag { get; set; }
-        public int? ViewCount { get; set; }
+        public bool? HomeFlag { set; get; }
+        public bool? HotFlag { set; get; }
+        public int? ViewCount { set; get; }
 
         [ForeignKey("CategoryID")]
-        public virtual ProductCategory ProductCategory { get; set; }
+        public virtual ProductCategory ProductCategory { set; get; }
     }
 }
