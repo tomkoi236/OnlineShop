@@ -8,28 +8,29 @@ namespace ShopOnline.Model.Models
     [Table("ProductCategories")]
     public class ProductCategory : Auditable
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int ID { set; get; }
 
         [Required]
         [MaxLength(256)]
-        public string Name { get; set; }
+        public string Name { set; get; }
 
         [Required]
         [MaxLength(256)]
-        public string Alias { get; set; }
+        public string Alias { set; get; }
 
         [MaxLength(500)]
-        public string Description { get; set; }
-
-        public int? ParentID { get; set; }
-        public int? DisplayOrder { get; set; }
+        public string Description { set; get; }
+        public int? ParentID { set; get; }
+        public int? DisplayOrder { set; get; }
 
         [MaxLength(256)]
-        public string Image { get; set; }
+        public string Image { set; get; }
 
-        public bool? HomeFlag { get; set; }
-        public virtual IEnumerable<Product> Products { get; set; }
+        public bool? HomeFlag { set; get; }
+
+        public virtual IEnumerable<Product> Products { set; get; }
     }
 }

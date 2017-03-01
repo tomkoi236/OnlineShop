@@ -10,7 +10,7 @@ namespace OnlineShop.Data
 {
     public class OnlineShopDbContext : DbContext
     {
-        public OnlineShopDbContext() : base("")
+        public OnlineShopDbContext() : base("OnlineShopConnection")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
