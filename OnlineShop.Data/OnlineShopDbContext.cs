@@ -1,10 +1,5 @@
 ﻿using ShopOnline.Model.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShop.Data
 {
@@ -14,6 +9,7 @@ namespace OnlineShop.Data
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
+
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
         public DbSet<MenuGroup> MenuGroups { set; get; }
@@ -34,7 +30,6 @@ namespace OnlineShop.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           
         }
     }
 }

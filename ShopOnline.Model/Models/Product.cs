@@ -1,7 +1,6 @@
 ﻿using ShopOnline.Model.Abstract;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace ShopOnline.Model.Models
 {
@@ -36,6 +35,7 @@ namespace ShopOnline.Model.Models
 
         [MaxLength(500)]
         public string Description { set; get; }
+
         public string Content { set; get; }
 
         public bool? HomeFlag { set; get; }

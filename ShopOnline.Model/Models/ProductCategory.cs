@@ -8,7 +8,6 @@ namespace ShopOnline.Model.Models
     [Table("ProductCategories")]
     public class ProductCategory : Auditable
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
@@ -23,6 +22,7 @@ namespace ShopOnline.Model.Models
 
         [MaxLength(500)]
         public string Description { set; get; }
+
         public int? ParentID { set; get; }
         public int? DisplayOrder { set; get; }
 

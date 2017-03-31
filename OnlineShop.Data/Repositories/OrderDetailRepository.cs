@@ -1,9 +1,5 @@
-﻿using ShopOnline.Model.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnlineShop.Data.Infrastructure;
+using ShopOnline.Model.Models;
 
 namespace OnlineShop.Data.Repositories
 {
