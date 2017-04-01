@@ -1,39 +1,111 @@
-﻿using System;
+﻿using OnlineShop.Service;
+using ShopOnline.Model.Models;
+using ShopOnline.Web.Infrastructure.Core;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
 namespace ShopOnline.Web.Api
 {
-    public class PostCategoryController : ApiController
+    [RoutePrefix("api/postCategory")]
+    public class PostCategoryController : ApiControllerBase
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        IPostCategoryService _postCategoryService;
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryServicce) :
+            base(errorService)
         {
-            return new string[] { "value1", "value2" };
+            this._postCategoryService = postCategoryServicce;
+        }
+        // create method
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
+        {
+            return CreateHttpRespone(request, () =>
+             {
+
+                 HttpResponseMessage response = null;
+                 if (!ModelState.IsValid)
+                 {
+                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                 }
+                 else
+                 {
+                   var category=  _postCategoryService.Add(postCategory);
+                     _postCategoryService.Save();
+
+                     response = request.CreateResponse(HttpStatusCode.Created, category);
+                 }
+                 return response;
+             });
+        }
+        //update method
+        public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
+        {
+            return CreateHttpRespone(request, () =>
+            {
+
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    _postCategoryService.Update(postCategory);
+                    _postCategoryService.Save();
+
+                    response = request.CreateResponse(HttpStatusCode.OK);
+                }
+                return response;
+            });
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
-            return "value";
+            return CreateHttpRespone(request, () =>
+            {
+
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    _postCategoryService.Delete(id);
+                    _postCategoryService.Save();
+
+                    response = request.CreateResponse(HttpStatusCode.OK);
+                }
+                return response;
+            });
+        }
+        [Route("getall")]
+        public HttpResponseMessage Get(HttpRequestMessage request)
+        {
+            return CreateHttpRespone(request, () =>
+            {
+
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                   var listCategory = _postCategoryService.GetAll();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+                }
+                return response;
+            });
         }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+
+
+
+
     }
 }
