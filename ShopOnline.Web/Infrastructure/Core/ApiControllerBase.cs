@@ -17,7 +17,7 @@ namespace ShopOnline.Web.Infrastructure.Core
         {
             this._errorService = errorService;
         }
-        protected HttpResponseMessage CreateHttpRespone (HttpRequestMessage requestMessage, Func<HttpResponseMessage> funcion)
+        protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> funcion)
         {
             HttpResponseMessage response = null;
             try
@@ -66,7 +66,7 @@ namespace ShopOnline.Web.Infrastructure.Core
             catch (System.Exception)
             {
 
-                throw;
+               
             }
         }
     }
