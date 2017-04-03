@@ -1,11 +1,13 @@
-﻿using OnlineShop.Service;
+﻿using AutoMapper;
+using OnlineShop.Service;
 using ShopOnline.Model.Models;
 using ShopOnline.Web.Infrastructure.Core;
+using ShopOnline.Web.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using ShopOnline.Web.Infrastructure.Extensions;
 namespace ShopOnline.Web.Api
 {
     [RoutePrefix("api/postCategory")]
@@ -25,15 +27,16 @@ namespace ShopOnline.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 var listCategory = _postCategoryService.GetAll();
+                var listPostaCategoryVM = Mapper.Map<PostCategoryViewModel>(listCategory);
 
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostaCategoryVM);
 
 
                 return response;
             });
         }
 
-        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -44,7 +47,9 @@ namespace ShopOnline.Web.Api
                 }
                 else
                 {
-                    var category = _postCategoryService.Add(postCategory);
+                    PostCategory newPostCategory = new PostCategory();
+                    newPostCategory.UpdatePostCategory(postCategoryVM);
+                    var category = _postCategoryService.Add(postCategory.Update);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.Created, category);
