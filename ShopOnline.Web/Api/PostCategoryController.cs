@@ -36,6 +36,7 @@ namespace ShopOnline.Web.Api
             });
         }
 
+        [Route("add")]
         public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpResponse(request, () =>
@@ -49,7 +50,7 @@ namespace ShopOnline.Web.Api
                 {
                     PostCategory newPostCategory = new PostCategory();
                     newPostCategory.UpdatePostCategory(postCategoryVM);
-                    var category = _postCategoryService.Add(postCategory.Update);
+                    var category = _postCategoryService.Add(newPostCategory);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.Created, category);
@@ -58,8 +59,8 @@ namespace ShopOnline.Web.Api
                 return response;
             });
         }
-
-        public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -70,7 +71,9 @@ namespace ShopOnline.Web.Api
                 }
                 else
                 {
-                    _postCategoryService.Update(postCategory);
+                    var postCategoryDb = _postCategoryService.GetById(postCategoryVM.ID);
+                    postCategoryDb.UpdatePostCategory(postCategoryVM);
+                    _postCategoryService.Update(postCategoryDb);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
