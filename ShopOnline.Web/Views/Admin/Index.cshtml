@@ -13,8 +13,15 @@
     <script src="~/Scripts/Sap/app.js"></script>
 </head>
 <body>
-    <div ng-controller="myController"> 
-        {{message}}
+    <div ng-controller="schoolController">
+        <div ng-controller="studentController">
+           in student: {{message}}
+        </div>
+        <div ng-controller="teacherController">
+           in teacher {{message}}
+        </div>
+        in schoole{{message}}
     </div>
+   
 </body>
 </html>

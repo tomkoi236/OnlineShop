@@ -1,10 +1,18 @@
 ﻿
 /// <reference path="../Plugins/angular/angular.js" />
 var myApp = angular.module('myModule', []);
-myApp.controller("myController", myController);
-
+myApp.controller("schoolController", schoolController);
+myApp.controller("studentController", studentController);
+myApp.controller("teacherController", teacherController);
 myController.$inject = ['$scope'];
+
 //declera
-function myController($scope) {
-    $scope.message = "this is message from controller";
+function schoolController($scope) {
+    $scope.message = "anumation from school";
+}
+function studentController( $scope) {
+//    $scope.message = "this is message from student";
+}
+function teacherController($scope) {
+    //$scope.message = "this is message from teacher";
 }
