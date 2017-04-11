@@ -14,13 +14,11 @@
 </head>
 <body>
     <div ng-controller="schoolController">
-        <div ng-controller="studentController">
-           in student: {{message}}
-        </div>
-        <div ng-controller="teacherController">
-           in teacher {{message}}
-        </div>
-        in schoole{{message}}
+        <online-shop-directive></online-shop-directive>
+     {{message}}
+        <button ng-click="checkNumber()">
+            check number
+        </button>
     </div>
    
 </body>
