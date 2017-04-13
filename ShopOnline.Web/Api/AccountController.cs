@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
 using ShopOnline.Web.App_Start;
+using ShopOnline.Web.Infrastructure.Core;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace ShopOnline.Web.Api
                 _userManager = value;
             }
         }
-        // POST: /Account/Login
+
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
@@ -55,14 +56,14 @@ namespace ShopOnline.Web.Api
         {
             if (!ModelState.IsValid)
             {
-                return request.CreateErrorResponse(HttpStatusCode.BadRequest ,ModelState);
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(userName, password, rememberMe, shouldLockout: false);
             return request.CreateResponse(HttpStatusCode.OK, result);
-          
         }
+
+
     }
 }

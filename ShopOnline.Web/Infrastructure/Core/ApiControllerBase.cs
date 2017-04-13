@@ -13,46 +13,46 @@ namespace ShopOnline.Web.Infrastructure.Core
     public class ApiControllerBase : ApiController
     {
         private IErrorService _errorService;
+
         public ApiControllerBase(IErrorService errorService)
         {
             this._errorService = errorService;
         }
-        protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> funcion)
+
+        protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> function)
         {
             HttpResponseMessage response = null;
             try
             {
-                response = funcion.Invoke();
+                response = function.Invoke();
             }
             catch (DbEntityValidationException ex)
             {
                 foreach (var eve in ex.EntityValidationErrors)
                 {
-                    Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validaton errors:");
+                    Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation error.");
                     foreach (var ve in eve.ValidationErrors)
                     {
-                        Trace.WriteLine($" - Property:\"{ve.PropertyName}\",Error:\"{ve.ErrorMessage}\"");
-                        
+                        Trace.WriteLine($"- Property: \"{ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"");
                     }
-                }      
+                }
                 LogError(ex);
-                response = requestMessage.CreateResponse(HttpStatusCode.BadRequest, ex.InnerException);
+                response = requestMessage.CreateResponse(HttpStatusCode.BadRequest, ex.InnerException.Message);
             }
             catch (DbUpdateException dbEx)
             {
-
                 LogError(dbEx);
-                response = requestMessage.CreateResponse(HttpStatusCode.BadRequest, dbEx.InnerException);
+                response = requestMessage.CreateResponse(HttpStatusCode.BadRequest, dbEx.InnerException.Message);
             }
             catch (Exception ex)
             {
-
                 LogError(ex);
                 response = requestMessage.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
             return response;
         }
-        private void LogError (Exception ex)
+
+        private void LogError(Exception ex)
         {
             try
             {
@@ -63,10 +63,8 @@ namespace ShopOnline.Web.Infrastructure.Core
                 _errorService.Create(error);
                 _errorService.Save();
             }
-            catch (System.Exception)
+            catch
             {
-
-               
             }
         }
     }
