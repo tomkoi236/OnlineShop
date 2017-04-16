@@ -2,6 +2,7 @@
 using OnlineShop.Data.Repositories;
 using ShopOnline.Model.Models;
 using System.Collections.Generic;
+using System;
 
 namespace OnlineShop.Service
 {
@@ -16,6 +17,7 @@ namespace OnlineShop.Service
         IEnumerable<ProductCategory> GetAll();
 
         IEnumerable<ProductCategory> GetAllByParentId(int parentId);
+        IEnumerable<ProductCategory> GetAll(string keyword);
 
         ProductCategory GetById(int id);
 
@@ -46,6 +48,15 @@ namespace OnlineShop.Service
         public IEnumerable<ProductCategory> GetAll()
         {
             return _ProductCategoryRepository.GetAll();
+        }
+
+        public IEnumerable<ProductCategory> GetAll(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+                return _ProductCategoryRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+            else
+                return _ProductCategoryRepository.GetAll();
+
         }
 
         public IEnumerable<ProductCategory> GetAllByParentId(int parentId)
