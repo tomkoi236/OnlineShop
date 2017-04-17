@@ -1,8 +1,7 @@
 ﻿ <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Home Page
-        <small>this is home page of spas</small>
+        Product Category
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home Page</a></li>
@@ -15,27 +14,27 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Product Category</h3>
+            <h3 class="box-title">Product Categories</h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                    <i class="fa fa-times"></i>
-                </button>
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="box-body">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="input-group">
                         <input type="text" class="form-control" ng-model="keyword" placeholder="keyword">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="search()">search</button>
+                            <button class="btn btn-default" type="button" ng-click="search()">Search</button>
                         </span>
                     </div><!-- /input-group -->
                 </div>
+                <div class="col-md-6">
+                    <button class="btn btn-success" ui-sref="add_product_categories">Add New</button>
+                </div>
             </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
