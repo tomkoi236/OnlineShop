@@ -9,20 +9,19 @@
             Status: true,
             Name: "Category 1"
         }
-
         $scope.AddProductCategory = AddProductCategory;
 
         function AddProductCategory() {
-            apiService.post('api/productcategory/create', $scope.productCategory,
+            apiService.post('/api/productcategory/create', $scope.productCategory,
                 function (result) {
-                    notificationService.displaySuccess(result.data.Name + ' Added Product Category Success.');
+                    notificationService.displaySuccess(result.data.Name + ' Add new category success.');
                     $state.go('product_categories');
                 }, function (error) {
-                    notificationService.displayError('Add was failed.');
+                    notificationService.displayError('add new category was faild.');
                 });
         }
         function loadParentCategory() {
-            apiService.get('api/productcategory/getallparents', null, function (result) {
+            apiService.get('/api/productcategory/getallparents', null, function (result) {
                 $scope.parentCategories = result.data;
             }, function () {
                 console.log('Cannot get list parent');
