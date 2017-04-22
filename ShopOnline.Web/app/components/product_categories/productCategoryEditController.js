@@ -12,9 +12,10 @@
         $scope.UpdateProductCategory = UpdateProductCategory;
         $scope.GetSeoTitle = GetSeoTitle;
 
-        function GetSeoTitle() {
+        function GetSeoTitle(){
             $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
         }
+
 
         function loadProductCategoryDetail() {
             apiService.get('api/productcategory/getbyid/' + $stateParams.id, null, function (result) {
