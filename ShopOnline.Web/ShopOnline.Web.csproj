@@ -230,12 +230,15 @@
     <Content Include="app\components\product_categories\productCategories.module.js" />
     <Content Include="app\components\product_categories\productCategoryAddView.html" />
     <Content Include="app\components\product_categories\productCategoryAddController.js" />
+    <Content Include="app\components\product_categories\productCategoryEditController.js" />
+    <Content Include="app\components\product_categories\productCategoryEditView.html" />
     <Content Include="app\components\product_categories\productCategoryListController.js" />
     <Content Include="app\components\product_categories\productCategoryListView.html" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\Filter\statusFilter.js" />
     <Content Include="app\shared\services\apiService.js" />
+    <Content Include="app\shared\services\commonService.js" />
     <Content Include="app\shared\services\notificationService.js" />
     <Content Include="Assets\Admin\css\AdminLTE.css" />
     <Content Include="Assets\Admin\css\AdminLTE.min.css" />
@@ -247,6 +250,7 @@
     <Content Include="Assets\Admin\css\alt\AdminLTE-select2.min.css" />
     <Content Include="Assets\Admin\css\alt\AdminLTE-without-plugins.css" />
     <Content Include="Assets\Admin\css\alt\AdminLTE-without-plugins.min.css" />
+    <Content Include="Assets\Admin\css\custom.css" />
     <Content Include="Assets\Admin\css\skins\skin-black-light.css" />
     <Content Include="Assets\Admin\css\skins\skin-black-light.min.css" />
     <Content Include="Assets\Admin\css\skins\skin-black.css" />

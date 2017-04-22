@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
 using ShopOnline.Web.App_Start;
-using ShopOnline.Web.Infrastructure.Core;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -63,7 +62,5 @@ namespace ShopOnline.Web.Api
             var result = await SignInManager.PasswordSignInAsync(userName, password, rememberMe, shouldLockout: false);
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
-
-
     }
 }

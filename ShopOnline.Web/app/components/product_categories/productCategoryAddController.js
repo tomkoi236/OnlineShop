@@ -7,7 +7,7 @@
         $scope.productCategory = {
             CreatedDate: new Date(),
             Status: true,
-            Name: "Category 1"
+            
         }
         $scope.AddProductCategory = AddProductCategory;
 
