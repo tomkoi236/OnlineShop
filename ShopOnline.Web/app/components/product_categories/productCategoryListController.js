@@ -14,17 +14,17 @@
         $scope.deleteProductCategory = deleteProductCategory;
 
         function deleteProductCategory(id) {
-            $ngBootbox.confirm('Do you want to delete ?').then(function () {
+            $ngBootbox.confirm('Do you want to delete?').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
                 apiService.del('api/productcategory/delete', config, function () {
-                    notificationService.displaySuccess('Delete success');
+                    notificationService.displaySuccess('Delete Success');
                     search();
                 }, function () {
-                    notificationService.displayError('Delete faild');
+                    notificationService.displayError('Delete Faild');
                 })
             });
         }
